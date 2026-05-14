@@ -37,6 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Beef Brisket',
             minsPerPound: 60,
             restTime: 60
+        },
+        'chicken': {
+            name: 'Whole Chicken',
+            minsPerPound: 20,
+            restTime: 15
+        },
+        'duck': {
+            name: 'Whole Duck',
+            minsPerPound: 20,
+            restTime: 15
+        },
+        'porkribs': {
+            name: 'Pork Ribs (Rack)',
+            fixedTimeMins: 300,
+            restTime: 15
+        },
+        'beefribs': {
+            name: 'Beef Ribs (Rack)',
+            fixedTimeMins: 420,
+            restTime: 30
         }
     };
 
@@ -49,6 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const generateBtn = document.getElementById('generate-btn');
     const timelineOutput = document.getElementById('timeline-output');
     const copyBtn = document.getElementById('copy-btn');
+
+    // ---------------------------------------------------------
+    // Event Listeners for UI
+    // ---------------------------------------------------------
+    meatTypeInput.addEventListener('change', () => {
+        const data = roastingData[meatTypeInput.value];
+        if (data && data.fixedTimeMins) {
+            meatWeightInput.disabled = true;
+            meatWeightInput.style.opacity = '0.5';
+        } else {
+            meatWeightInput.disabled = false;
+            meatWeightInput.style.opacity = '1';
+        }
+    });
 
     // ---------------------------------------------------------
     // Core Logic
@@ -70,12 +104,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const weight = parseFloat(meatWeightInput.value);
         const targetTimeStr = targetTimeInput.value; // e.g. "18:00"
 
-        if (!meatKey || isNaN(weight) || weight <= 0 || !targetTimeStr) {
-            alert('Please enter a valid weight and target time.');
+        if (!meatKey || !targetTimeStr) {
+            alert('Please enter a valid meat type and target time.');
             return;
         }
 
         const data = roastingData[meatKey];
+        if (!data) return;
+
+        let totalCookTimeMins;
+        let weightDesc = "";
+
+        if (data.fixedTimeMins) {
+            totalCookTimeMins = data.fixedTimeMins;
+            weightDesc = `1 rack of`;
+        } else {
+            if (isNaN(weight) || weight <= 0) {
+                alert('Please enter a valid weight.');
+                return;
+            }
+            totalCookTimeMins = Math.round(weight * data.minsPerPound);
+            weightDesc = `${weight} lbs of`;
+        }
         
         // Step 4 (Serve): Target Dinner Time
         // Create a date object for today at the specific time
@@ -88,8 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const pullTime = new Date(serveTime.getTime() - (data.restTime * 60000));
 
         // Step 2 (Cook)
-        // Multiply weight by mins/pound. Subtract from pullTime.
-        const totalCookTimeMins = Math.round(weight * data.minsPerPound);
+        // Set cook time based on fixed time or weight. Subtract from pullTime.
         const ovenTime = new Date(pullTime.getTime() - (totalCookTimeMins * 60000));
 
         // Step 1 (Preheat)
@@ -106,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <li>
                 <div class="timeline-step">Step 2: Put in Oven</div>
                 <div class="timeline-time">${formatTime(ovenTime)}</div>
-                <div class="timeline-desc">Roast ${weight} lbs of ${data.name} for ~${totalCookTimeMins} mins.</div>
+                <div class="timeline-desc">Roast ${weightDesc} ${data.name} for ~${totalCookTimeMins} mins.</div>
             </li>
             <li>
                 <div class="timeline-step">Step 3: Rest</div>
