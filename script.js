@@ -57,6 +57,26 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Beef Ribs (Rack)',
             fixedTimeMins: 420,
             restTime: 30
+        },
+        'lamb': {
+            name: 'Leg of Lamb',
+            minsPerPound: 20,
+            restTime: 20
+        },
+        'goat': {
+            name: 'Leg of Goat',
+            minsPerPound: 25,
+            restTime: 20
+        },
+        'fish': {
+            name: 'Whole Fish',
+            minsPerPound: 15,
+            restTime: 5
+        },
+        'salmon': {
+            name: 'Salmon (Side/Fillet)',
+            minsPerPound: 10,
+            restTime: 5
         }
     };
 
