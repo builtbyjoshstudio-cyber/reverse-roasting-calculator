@@ -77,6 +77,31 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'Salmon (Side/Fillet)',
             minsPerPound: 10,
             restTime: 5
+        },
+        'ham': {
+            name: 'Whole Ham (Pre-cooked)',
+            minsPerPound: 15,
+            restTime: 15
+        },
+        'beeftenderloin': {
+            name: 'Beef Tenderloin',
+            minsPerPound: 15,
+            restTime: 15
+        },
+        'porkloin': {
+            name: 'Pork Loin Roast',
+            minsPerPound: 20,
+            restTime: 15
+        },
+        'turkeybreast': {
+            name: 'Turkey Breast (Bone-in)',
+            minsPerPound: 20,
+            restTime: 20
+        },
+        'rackoflamb': {
+            name: 'Rack of Lamb',
+            minsPerPound: 15,
+            restTime: 10
         }
     };
 
