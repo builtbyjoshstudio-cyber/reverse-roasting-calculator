@@ -21,87 +21,104 @@ document.addEventListener('DOMContentLoaded', () => {
         'turkey': {
             name: 'Whole Turkey',
             minsPerPound: 15,
-            restTime: 30
+            restTime: 30,
+            temp: '325°F (165°C)'
         },
         'primerib': {
             name: 'Prime Rib (Medium Rare)',
             minsPerPound: 15,
-            restTime: 30
+            restTime: 30,
+            temp: '325°F (165°C)'
         },
         'pork': {
             name: 'Pork Shoulder',
             minsPerPound: 40,
-            restTime: 60
+            restTime: 60,
+            temp: '250°F (120°C)'
         },
         'brisket': {
             name: 'Beef Brisket',
             minsPerPound: 60,
-            restTime: 60
+            restTime: 60,
+            temp: '250°F (120°C)'
         },
         'chicken': {
             name: 'Whole Chicken',
             minsPerPound: 20,
-            restTime: 15
+            restTime: 15,
+            temp: '375°F (190°C)'
         },
         'duck': {
             name: 'Whole Duck',
             minsPerPound: 20,
-            restTime: 15
+            restTime: 15,
+            temp: '375°F (190°C)'
         },
         'porkribs': {
             name: 'Pork Ribs (Rack)',
             fixedTimeMins: 300,
-            restTime: 15
+            restTime: 15,
+            temp: '250°F (120°C)'
         },
         'beefribs': {
             name: 'Beef Ribs (Rack)',
             fixedTimeMins: 420,
-            restTime: 30
+            restTime: 30,
+            temp: '250°F (120°C)'
         },
         'lamb': {
             name: 'Leg of Lamb',
             minsPerPound: 20,
-            restTime: 20
+            restTime: 20,
+            temp: '325°F (165°C)'
         },
         'goat': {
             name: 'Leg of Goat',
             minsPerPound: 25,
-            restTime: 20
+            restTime: 20,
+            temp: '300°F (150°C)'
         },
         'fish': {
             name: 'Whole Fish',
             minsPerPound: 15,
-            restTime: 5
+            restTime: 5,
+            temp: '400°F (200°C)'
         },
         'salmon': {
             name: 'Salmon (Side/Fillet)',
             minsPerPound: 10,
-            restTime: 5
+            restTime: 5,
+            temp: '400°F (200°C)'
         },
         'ham': {
             name: 'Whole Ham (Pre-cooked)',
             minsPerPound: 15,
-            restTime: 15
+            restTime: 15,
+            temp: '275°F (135°C)'
         },
         'beeftenderloin': {
             name: 'Beef Tenderloin',
             minsPerPound: 15,
-            restTime: 15
+            restTime: 15,
+            temp: '425°F (220°C)'
         },
         'porkloin': {
             name: 'Pork Loin Roast',
             minsPerPound: 20,
-            restTime: 15
+            restTime: 15,
+            temp: '350°F (175°C)'
         },
         'turkeybreast': {
             name: 'Turkey Breast (Bone-in)',
             minsPerPound: 20,
-            restTime: 20
+            restTime: 20,
+            temp: '350°F (175°C)'
         },
         'rackoflamb': {
             name: 'Rack of Lamb',
             minsPerPound: 15,
-            restTime: 10
+            restTime: 10,
+            temp: '400°F (200°C)'
         }
     };
 
@@ -195,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <li>
                 <div class="timeline-step">Step 1: Preheat</div>
                 <div class="timeline-time">${formatTime(preheatTime)}</div>
-                <div class="timeline-desc">Turn oven on to target temperature.</div>
+                <div class="timeline-desc">Preheat Oven/Smoker to ${data.temp}.</div>
             </li>
             <li>
                 <div class="timeline-step">Step 2: Put in Oven</div>
