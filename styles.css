@@ -85,7 +85,7 @@ header h1 {
 
 header p {
     font-size: 1.1rem;
-    color: #ddd;
+    color: var(--text-muted);
 }
 
 .header-top {
